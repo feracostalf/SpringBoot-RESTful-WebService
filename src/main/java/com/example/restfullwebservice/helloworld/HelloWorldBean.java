@@ -1,4 +1,4 @@
-package com.example.demo.helloworld;
+package com.example.restfullwebservice.helloworld;
 
 public class HelloWorldBean {
 

@@ -1,4 +1,4 @@
-package com.example.demo.user;
+package com.example.restfullwebservice.user;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
