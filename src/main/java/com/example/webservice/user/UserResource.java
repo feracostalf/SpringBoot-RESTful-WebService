@@ -1,4 +1,4 @@
-package com.example.restfullwebservice.user;
+package com.example.webservice.user;
 
 import java.net.URI;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.restfullwebservice.exception.UserNotFoundException;
+import com.example.webservice.exception.UserNotFoundException;
 
 @RestController
 public class UserResource {

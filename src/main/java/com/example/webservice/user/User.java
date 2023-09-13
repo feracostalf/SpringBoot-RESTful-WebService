@@ -1,4 +1,4 @@
-package com.example.restfullwebservice.user;
+package com.example.webservice.user;
 
 import java.time.LocalDate;
 
