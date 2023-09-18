@@ -2,9 +2,14 @@ package com.example.webservice.user;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 public class User {
     private Integer Id;
+    @Size(min = 2, message = "size name must be > 2")
     private String name;
+    @Past
     private LocalDate birthDate;
 
     public User(Integer id, String name, LocalDate birthDate) {
