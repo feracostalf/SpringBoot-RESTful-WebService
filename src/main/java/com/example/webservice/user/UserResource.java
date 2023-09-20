@@ -6,6 +6,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,12 +38,19 @@ public class UserResource {
     }
 
     @GetMapping(path ="/users/{id}")
-    public User retrieveUser(@PathVariable int id){
+    public EntityModel <User> retrieveUser(@PathVariable int id){
         User user = service.findOne(id);
         if(user == null){
             throw new UserNotFoundException("id: "+id);
         }
-        return user;
+        //Wrap User resource in EntityModel
+        EntityModel<User> entityModel=EntityModel.of(user);
+        //Create a link to point retrieveAllUsers controller method
+        WebMvcLinkBuilder link= WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
+        //Add link to entity model
+        entityModel.add(link.withRel("all-users"));
+
+        return entityModel;
     }
 
     @PostMapping(path="/users")
