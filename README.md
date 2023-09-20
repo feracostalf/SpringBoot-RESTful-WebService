@@ -28,11 +28,12 @@ Validations
 ContentNegotation
 - Add messages.properties file to customize language messages
 - Add jackson-dataformat-xml dependency to parse data to XML format
-    <dependency>
+```
+<dependency>
     <groupId>com.fasterxml.jackson.dataformat</groupId>
     <artifactId>jackson-dataformat-xml</artifactId>
-    </dependency>
-
+</dependency>
+```
     Header:
         Accept:  
             application format(XML/JSON)
@@ -40,11 +41,13 @@ ContentNegotation
 
 SpringDoc - OpenApi
 - Add springdoc to generate swagger from codesouce
-<!--dependency>
+```
+<dependency>
     <groupId>org.springdoc</groupId>
     <artifactId>springdoc-openapi-ui</artifactId>
     <version>1.7.0</version>
-</dependency-->
+</dependency>
+```
 http://localhost:8080/swagger-ui/index.html
 
 # Following Udemy course
