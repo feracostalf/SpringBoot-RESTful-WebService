@@ -4,12 +4,12 @@ Restful Webservice
 # topics
 RestController, RequestMapping, PathParameters, StaticResorces, CustomizedExceptionHandler, HTTPStatus, ResponseEntity, RequestPath, RequestBody, DeleteMapping, Validations, CustomeValidationMessage, XML/JSON format, Languaje dataformat, Swagger
 
-Uri's
+URIs
 - Name resources in plural
-/users
-/users/1
-/users/1/posts/
-/users/1/posts/1
+-/users
+-/users/1
+-/users/1/posts/
+-/users/1/posts/1
 
 HTTP metods
 - POST create new resource
