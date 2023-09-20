@@ -6,10 +6,10 @@ RestController, RequestMapping, PathParameters, StaticResorces, CustomizedExcept
 
 URIs
 - Name resources in plural
--/users
--/users/1
--/users/1/posts/
--/users/1/posts/1
+- /users
+- /users/1
+- /users/1/posts/
+- /users/1/posts/1
 
 HTTP metods
 - POST create new resource
