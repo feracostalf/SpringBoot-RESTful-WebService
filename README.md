@@ -20,18 +20,19 @@ HTTP metods
 
 Validations
 - Add springboot starter validation dependency
-<!--dependency>
+<dependency>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-validation</artifactId>
-</dependency-->
+</dependency>
 
 ContentNegotation
 - Add messages.properties file to customize language messages
 - Add jackson-dataformat-xml dependency to parse data to XML format
-<!--dependency>
+<dependency>
     <groupId>com.fasterxml.jackson.dataformat</groupId>
     <artifactId>jackson-dataformat-xml</artifactId>
-</dependency-->	
+</dependency>
+	
     Header:
         Accept:  
             application format(XML/JSON)
