@@ -2,7 +2,7 @@
 Restful Webservice
 
 # topics
-RestController, RequestMapping, PathParameters, StaticResorces, CustomizedExceptionHandler, HTTPStatus, ResponseEntity, RequestPath, RequestBody, DeleteMapping, Validations, CustomeValidationMessage, XML/JSON format, Languaje dataformat, Swagger, API Versioning, HETAOS
+RestController, RequestMapping, PathParameters, StaticResorces, CustomizedExceptionHandler, HTTPStatus, ResponseEntity, RequestPath, RequestBody, DeleteMapping, Validations, CustomeValidationMessage, XML/JSON format, Languaje dataformat, Swagger, API Versioning, HETAOS, Serialization
 
 URIs
 Name resources in plural
@@ -129,6 +129,41 @@ WebMvcLinkBuilder link= WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this
 
 //Add link to entity model
 entityModel.add(link.withRel("all-users"));
+```
+
+Serialization
+Customized entity response names
+```
+@JsonProperty("user_name")
+private String name;
+``` 
+Static Filtering
+Filter Bean values to all responses
+```
+    private String user;
+    @JsonIgnore
+    private String password;
+    private String DNI;
+```
+Dynamic Filtering
+Allows to filter values to specific REST responses
+```
+@GetMapping(path = "/filtering-list")
+    public MappingJacksonValue retriveBeanAll(){
+        List<FilteredBean> filteredBean= Arrays.asList(
+            new FilteredBean("Fer","FerT34%545","3498982387"),
+            new FilteredBean("Jorge","lkejddl445","083749373"),
+            new FilteredBean("Juan","4059fr","28376987")
+            );
+        MappingJacksonValue mappingJacksonValue= new MappingJacksonValue(filteredBean);
+
+        SimpleBeanPropertyFilter simpleBeanPropertyFilter=SimpleBeanPropertyFilter.filterOutAllExcept("user");
+        
+        FilterProvider filterProvider=new SimpleFilterProvider().addFilter("SomeBeanFilter", simpleBeanPropertyFilter);
+        mappingJacksonValue.setFilters(filterProvider);
+
+        return mappingJacksonValue;
+    }
 ```
 
 

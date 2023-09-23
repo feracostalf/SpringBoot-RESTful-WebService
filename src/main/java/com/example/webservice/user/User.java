@@ -5,9 +5,12 @@ import java.time.LocalDate;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class User {
     private Integer Id;
     @Size(min = 2, message = "size name must be > 2")
+    @JsonProperty("user_name")
     private String name;
     @Past
     private LocalDate birthDate;
