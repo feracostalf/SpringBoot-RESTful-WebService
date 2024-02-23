@@ -57,7 +57,7 @@ Go swagger-ui/index.html
 
 Versioning
 - URI
-v1/customer
+- v1/customer
 ```
     @GetMapping(path="v1/customer")
     public CustomerV1 retrieveFistVersionOfCustomer(){
@@ -69,18 +69,7 @@ v1/customer
         return new CustomerV2(new Name("Fernando", "Acosta", 12345678));
     }
 ```
-{
-    "name": "Fernando Acosta"
-}
 
-v2/customer
-{
-    "name": {
-        "fisrtName": "Fernando",
-        "lastName": "Acosta",
-        "dni": 12345678
-    }
-}
 - Request Params
 customer?version=1
 customer?version=2
@@ -132,12 +121,12 @@ entityModel.add(link.withRel("all-users"));
 ```
 
 Serialization
-Customized entity response names
+- Customized entity response names
 ```
 @JsonProperty("user_name")
 private String name;
 ``` 
-Static Filtering
+- Static Filtering
 Filter Bean values to all responses
 ```
     private String user;
@@ -145,7 +134,7 @@ Filter Bean values to all responses
     private String password;
     private String DNI;
 ```
-Dynamic Filtering
+- Dynamic Filtering
 Allows to filter values to specific REST responses
 ```
 @GetMapping(path = "/filtering-list")
@@ -165,6 +154,66 @@ Allows to filter values to specific REST responses
         return mappingJacksonValue;
     }
 ```
+SPRING BOOT ACTUATOR - MANAGE & MONITORING SERVICE
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+to see all available apis in /actuator
+```
+management.endpoints.web.exposure.include=*
+```
+
+HAL EXPLORER - Hyperlink our resources and apis to monitor & manage for non technical users
+```
+<dependency>
+	<groupId>org.springframework.data</groupId>
+	<artifactId>spring-data-rest-hal-explorer</artifactId>
+</dependency>
+```
+
+- CONNECTING DATABASE H2 TO REST API (JPA & HIBERNATE)
+```
+#Enable h2 console
+spring.h2.console.enabled=true
+```
+Dependencies
+```
+<dependency>
+	<groupId>com.h2database</groupId>
+	<artifactId>h2</artifactId>
+	<scope>runtime</scope>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+```
+Anotate entity class and indicate entity ID with @Id
+@Entity(name="user_details")
+Browse to /h2-console and connect to DB using jdbc URL: ex jdbc:h2:mem:bbd734f4-1f31-43c7-a4cd-fd2ea8b197e7
+Create data.sql file to insert some default data
+```
+INSERT INTO USER_DETAILS VALUES(1, current_date(),'Hello');
+INSERT INTO USER_DETAILS VALUES(2, current_date(), 'World');
+```
+
+Add properties
+```
+#add DB URL
+spring.datasource.url=jdbc:h2:mem:test
+spring.jpa.defer-datasource-initialization=true
+```
+Create entity repository interface and extends from JPA repository
+ex: public interface UserRespository extends JpaRepository<User,Integer>
+
+
+
+
+
 
 
 # Following Udemy course

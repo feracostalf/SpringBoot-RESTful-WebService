@@ -1,4 +1,4 @@
-package com.example.webservice.user;
+package com.example.webservice.service.impl;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,9 +7,12 @@ import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
+import com.example.webservice.service.UserService;
+import com.example.webservice.user.User;
+
 
 @Component
-public class UserDAOService {
+public class UserDAOService implements UserService{
     //Static List
     private static List<User> users=new ArrayList<>();
     private static int countUsers=0;

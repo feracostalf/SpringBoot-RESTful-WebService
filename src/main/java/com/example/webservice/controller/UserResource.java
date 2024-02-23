@@ -1,11 +1,12 @@
-package com.example.webservice.user;
+package com.example.webservice.controller;
 
 import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.webservice.exception.UserNotFoundException;
+import com.example.webservice.service.UserService;
+import com.example.webservice.user.User;
 
 @RestController
 public class UserResource {
-    private UserDAOService service;
-
-    public UserResource(UserDAOService service){
-        this.service=service;
-    }
+    @Autowired
+    @Qualifier(value="userDAOService")
+    private UserService service;
 
     @GetMapping(path = "/users")
     public List<User> retrieveAllUsers(){
